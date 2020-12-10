@@ -16,7 +16,16 @@ vendatE = []
 TP = 0.6
 CT = time.time()
 filePath = 'FileS'
+filePathCP = 'GoogleChrome'
+
 Path = os.path.join(os.path.dirname(os.path.abspath(__name__)),filePath)
+CPPath = os.path.join(os.path.dirname(os.path.abspath(__name__)),filePathCP)
+CDPath = os.path.join(os.path.dirname(os.path.abspath(__name__)))
+
+print(CPPath)
+print(CDPath)
+
+
 
 class VMTermsUpdate:
     def __init__(self):
@@ -45,9 +54,12 @@ class VMTermsUpdate:
             "profile.content_settings.exceptions.plugins.*,*.per_resource.adobe-flash-player": 1,
             "PluginsAllowedForUrls": "https://kof.bizsys.pearson.com/markview/MVT_Web_Inquiry.ShowInquiry"
         }
+        # options.binary_location = f"{CPPath}\\chrome.exe"
         options.add_experimental_option('prefs',prefs)
         options.add_argument('--start-maximized')
-        return wd.Chrome('./chromedriver',options=options)
+        options.add_argument('--disable-extensions')
+        # return wd.Chrome(executable_path=f'{CDPath}\\chromedriver.exe',options=options)
+        return wd.Firefox()
 
     D = Driv()
     def StaRt(self,ent):
@@ -66,6 +78,7 @@ class VMTermsUpdate:
         except te:
             print('Time Up')
             VMTermsUpdate.D.quit()
+
 
         timeout = 60
         try:
@@ -110,11 +123,19 @@ class VMTermsUpdate:
                 if H[3].upper() == 'CORPORATION':
                     VMTermsUpdate.ElemX('//*[@id="orgType"]/option[2]').click()
                     VMTermsUpdate.ElemX('//*[@id="saveBtn"]').click()
+
+                    if ec.visibility_of_element_located((By.XPATH, '//*[@id="FwkErrorBeanId"]/tbody/tr/td/table/tbody/tr/td/div[1]/div/table/tbody/tr/td[3]/table/tbody/tr/td/h1')):
+                        VMTermsUpdate.ElemX('//*[@id="confirmBtn"]').click()
+                        
                     SITEMAT = True
                     VMTermsUpdate.ElemX('//*[@id="POS_HT_SP_B_SUPP"]').click()
                 elif H[3].upper() == 'INDIVIDUAL':
                     VMTermsUpdate.ElemX('//*[@id="orgType"]/option[8]').click()
                     VMTermsUpdate.ElemX('//*[@id="saveBtn"]').click()
+
+                    if ec.visibility_of_element_located((By.XPATH, '//*[@id="FwkErrorBeanId"]/tbody/tr/td/table/tbody/tr/td/div[1]/div/table/tbody/tr/td[3]/table/tbody/tr/td/h1')):
+                        VMTermsUpdate.ElemX('//*[@id="confirmBtn"]').click()
+
                     SITEMAT = True
                     VMTermsUpdate.ElemX('//*[@id="POS_HT_SP_B_SUPP"]').click()
                 else:
