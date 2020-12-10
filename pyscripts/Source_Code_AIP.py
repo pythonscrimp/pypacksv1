@@ -79,7 +79,6 @@ class VMTermsUpdate:
             print('Time Up')
             VMTermsUpdate.D.quit()
 
-
         timeout = 60
         try:
             wdw(VMTermsUpdate.D, timeout).until(ec.visibility_of_element_located((By.XPATH, '//*[@id="region10"]/div[1]/table/tbody/tr/td/h1')))
@@ -124,7 +123,7 @@ class VMTermsUpdate:
                     VMTermsUpdate.ElemX('//*[@id="orgType"]/option[2]').click()
                     VMTermsUpdate.ElemX('//*[@id="saveBtn"]').click()
 
-                    if ec.visibility_of_element_located((By.XPATH, '//*[@id="FwkErrorBeanId"]/tbody/tr/td/table/tbody/tr/td/div[1]/div/table/tbody/tr/td[3]/table/tbody/tr/td/h1')):
+                    if VMTermsUpdate.ElemX('//*[@id="FwkErrorBeanId"]/tbody/tr/td/table/tbody/tr/td/div[3]').get_attribute('innerText') != 'Changes to Tax and Reporting have been saved':
                         VMTermsUpdate.ElemX('//*[@id="confirmBtn"]').click()
                         
                     SITEMAT = True
@@ -133,7 +132,7 @@ class VMTermsUpdate:
                     VMTermsUpdate.ElemX('//*[@id="orgType"]/option[8]').click()
                     VMTermsUpdate.ElemX('//*[@id="saveBtn"]').click()
 
-                    if ec.visibility_of_element_located((By.XPATH, '//*[@id="FwkErrorBeanId"]/tbody/tr/td/table/tbody/tr/td/div[1]/div/table/tbody/tr/td[3]/table/tbody/tr/td/h1')):
+                    if VMTermsUpdate.ElemX('//*[@id="FwkErrorBeanId"]/tbody/tr/td/table/tbody/tr/td/div[3]').get_attribute('innerText') != 'Changes to Tax and Reporting have been saved':
                         VMTermsUpdate.ElemX('//*[@id="confirmBtn"]').click()
 
                     SITEMAT = True
