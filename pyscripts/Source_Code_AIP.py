@@ -22,8 +22,8 @@ Path = os.path.join(os.path.dirname(os.path.abspath(__name__)),filePath)
 CPPath = os.path.join(os.path.dirname(os.path.abspath(__name__)),filePathCP)
 CDPath = os.path.join(os.path.dirname(os.path.abspath(__name__)))
 
-print(CPPath)
-print(CDPath)
+#print(CPPath)
+#print(CDPath)
 
 
 
